@@ -1,0 +1,50 @@
+.headerActionBtns {
+  button {
+    margin-right: 10px;
+  }
+}
+.buttonInTop() {
+  .ant-pro-table-search .ant-form {
+    position: relative;
+  }
+  .ant-row-start > .ant-col:last-child {
+    position: absolute;
+    right: 0;
+    top: 0;
+    max-width: 40%;
+    height: 40px;
+  }
+}
+.inquiryReportsListTable, .salesReportsListTable {
+  :global {
+    .buttonInTop();
+    .ant-row-start > .ant-col:nth-child(n + 3) {
+      .ant-form-item-label {
+        display: none;
+      }
+      .ant-form-item-control{
+        max-width: 100% !important;
+      }
+    }
+  }
+}
+
+.usersReportsListTable {
+  :global {
+    .buttonInTop();
+  }
+}
+
+.authorizationUserItem {
+  margin-right: 5px;
+  .authorizationUserItemIndex {
+    border: 1px solid;
+    border-radius: 50%;
+    font-size: 12px;
+    width: 14px;
+    height: 14px;
+    line-height: 14px;
+    text-align: center;
+    display: inline-block;
+  }
+}

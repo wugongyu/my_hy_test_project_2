@@ -1,0 +1,40 @@
+@import '~antd/es/style/themes/default.less';
+
+.main {
+  position: absolute;
+  top: 50%;
+  right: 10%;
+  width: 380px;
+  margin: 0 auto;
+  margin-top: -250px;
+  padding: 50px;
+  background-color: #fff;
+  border-radius: 10px;
+  @media screen and (max-width: @screen-sm) {
+    width: 95%;
+  }
+  // .alertContent {
+  //   margin: 0 20px;
+  // }
+  .loginTitle {
+    font-weight: 500;
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .loginForm {
+    padding: 20px;
+  }
+
+  .loginButton {
+    width: 100%;
+    margin-top: 0;
+  }
+  .captchaFormItem {
+    display: flex;
+    .captchaInputItem {
+      margin-right: 10px;
+      margin-bottom: 15px;
+    }
+  }
+}

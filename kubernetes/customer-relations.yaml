@@ -1,0 +1,75 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: customer-relations
+  namespace: $NAMESPACE
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: customer-relations
+    spec:
+      containers:
+        - name: customer-relations
+          image: registry.jianke.com/library/customer-relations:$IMAGE_TAG
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 60
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 5
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 60
+            timeoutSeconds: 5
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: NODE_ENV
+              value: "production"
+            - name: Environment
+              value: "production"
+            - name: JK_PROFILE
+              value: "dev"
+            - name: API_HOST
+              value: "jksoft-apigateway.dev.jianke.com"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: customer-relations
+  namespace: $NAMESPACE
+  labels:
+    run: customer-relations
+spec:
+  ports:
+    - port: 8080
+      protocol: TCP
+      name: http
+  selector:
+    run: customer-relations
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: customer-relations
+  namespace: $NAMESPACE
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "50M"
+spec:
+  rules:
+    - host: customer-relations.dev.jianke.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: customer-relations
+              servicePort: 8080

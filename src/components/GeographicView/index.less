@@ -1,0 +1,25 @@
+@import '~antd/lib/style/themes/default.less';
+
+.row /deep/ {
+  .item, .fullItem {
+    width: ~'calc(33% - 8px)' !important;
+    max-width: 220px;
+    min-width: 50px;
+    margin-right: 8px;
+  }
+  .item:last-child {
+    width: ~'calc(34% - 3px)' !important;
+    margin-right: 0;
+  }
+  .fullItem:last-child {
+    width: ~'calc(34%)' !important;
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width: @screen-sm) {
+  .item:first-child, .fullItem:first-child {
+    margin: 0;
+    margin-bottom: 8px;
+  }
+}

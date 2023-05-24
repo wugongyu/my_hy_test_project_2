@@ -1,0 +1,31 @@
+@import '~@/utils/utils.less';
+
+.commonFuzzySearchProducts {
+  :global {
+    .ant-select-item-option-content {
+      white-space: normal;
+    }
+  }
+}
+
+.fuzzySearchProductsContentBox {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  .flexContent {
+    flex: 1;
+    font-size: 12px;
+    p {
+      margin-bottom: 6px;
+    }
+    .contentTitle {
+      color: rgba(0, 0, 0, 0.5);
+    }
+    .contentTitle::after {
+      content: '：';
+    }
+    .contentValue {
+      white-space: normal;
+    }
+  }
+}

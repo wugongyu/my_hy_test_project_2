@@ -1,0 +1,36 @@
+@import '~antd/es/style/themes/default.less';
+
+// table搜索项无label标签样式
+.tableSearchItemWithoutLabel {
+  :global {
+    .ant-form-item-label {
+      display: none;
+    }
+    .ant-form-item-control{
+      max-width: 100% !important;
+    }
+  }
+}
+
+.globaleWarehouseName {
+  background: #fff;
+  color: @heading-color;
+  font-size: 16px;
+  padding: 12px 24px 0 24px;
+  font-weight: 600;
+}
+
+// 通用的除导航条外的tabs样式
+.commonTabInfo {
+  .commonTabInfoCard {
+    :global {
+      .ant-tabs-nav {
+        position: relative !important;
+        z-index: 1;
+      }
+      .ant-tabs-content-holder {
+        padding: 0;
+      }
+    }
+  }
+}

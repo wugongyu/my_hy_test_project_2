@@ -1,0 +1,75 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: new-project
+  namespace: $NAMESPACE
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: new-project
+    spec:
+      containers:
+        - name: new-project
+          image: registry.jianke.com/library/new-project:$IMAGE_TAG
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 60
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 5
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 60
+            timeoutSeconds: 5
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: NODE_ENV
+              value: "production"
+            - name: Environment
+              value: "production"
+            - name: JK_PROFILE
+              value: "dev"
+            - name: API_HOST
+              value: "jksoft-apigateway.dev.jianke.com"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: new-project
+  namespace: $NAMESPACE
+  labels:
+    run: new-project
+spec:
+  ports:
+    - port: 8080
+      protocol: TCP
+      name: http
+  selector:
+    run: new-project
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: new-project
+  namespace: $NAMESPACE
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "50M"
+spec:
+  rules:
+    - host: new-project.dev.jianke.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: new-project
+              servicePort: 8080

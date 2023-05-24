@@ -1,0 +1,74 @@
+@import '~@/utils/utils.less';
+
+.authorizedProductsTable {
+  :global {
+    .ant-card-body {
+      padding: 0;
+    }
+    .ant-pro-table-list-toolbar-container {
+      padding: 8px 0;
+    }
+    .ant-pro-table-list-toolbar-left, .ant-pro-table-list-toolbar-title {
+      width: 100%;
+    }
+  }
+  .productsTableheaderAction {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    .productsTableheaderActionBtns {
+      width: 100%;
+      flex: 2;
+    }
+    .productsTableheaderActionSearchForm {
+      flex: 3;
+      width: 100%;
+      :global {
+        .ant-form .ant-row {
+          width: 100%;
+        }
+        .ant-col:last-child {
+          text-align: right;
+        }
+      }
+    }
+  }
+  .productsTableheaderActionBtns {
+    button {
+      margin-right: 10px;
+      margin-bottom: 5px;
+    }
+  }
+}
+
+.fileUploadContent {
+  width: '500px';
+  margin: 0 auto;
+  :global {
+    .ant-row > div:nth-child(1) {
+      text-align: left !important;
+    }
+  }
+  .fileUploadContentTitle {
+    font-weight: bold;
+  }
+  p {
+    margin-bottom: 10px;
+  }
+}
+.alertText {
+  color: red;
+}
+
+.searchProductsModalTable {
+  overflow: auto;
+  .tableItem {
+    min-width: 80px;
+  }
+  .longTableItem {
+    min-width: 100px;
+  }
+  .specialLongTableItem {
+    min-width: 120px;
+  }
+}

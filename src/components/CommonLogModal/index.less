@@ -1,0 +1,33 @@
+.logModal {
+  :global {
+    .ant-modal-footer {
+      border-top: 0;
+    }
+    .ant-modal-header {
+      border-bottom: 0;
+    }
+    .ant-modal-body {
+      padding: 0 24px;
+      .alert-title {
+        margin: 8px 24px;
+      }
+    }
+    .log-table {
+      .ant-table-thead > tr > th,
+      .ant-table-tbody > tr > td {
+        padding: 10px 16px;
+      }
+      .log-content-ellipsis {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+
+        /* autoprefixer: off */
+        -webkit-box-orient: vertical;
+
+        /* autoprefixer: on */
+        -webkit-line-clamp: 2;
+      }
+    }
+  }
+}
